@@ -42,7 +42,7 @@ export default function RegisterAgent() {
       setStatus('simulating')
       
       // Simulate Policy Hash Generation
-      const hashStr = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JSON.stringify(formData)))
+      const hashStr = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JSON.stringify(formData)) as any)
       const hashArray = Array.from(new Uint8Array(hashStr))
       const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
       const mockPolicyHash = `0x${hashHex.substring(0, 32)}`
